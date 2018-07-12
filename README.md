@@ -28,3 +28,20 @@ Here's what you have to do
 The program should show a little progress bar that displays how many
 likes have been fetched so far, as well as much time remains. At the
 end, all of your likes will be available in `likes.csv`. Enjoy!
+
+## Troubleshooting
+
+If you are having problems pasting the long URL, you can modify the
+first few lines of `main.rs` (everything in `main` above `if
+input.is_empty()` to be:
+
+```rust
+let mut f = File::open("curl.txt").expect("file not found");
+let mut input = String::new();
+f.read_to_string(&mut input)
+ .expect("something went wrong reading the file");
+```
+
+Then just put the URL into a file called `curl.txt` in the current
+directory and run the program with `cargo run`. Thanks to @joelgerard
+from [#1](https://github.com/jonhoo/su-extract/issues/1).
